@@ -17,6 +17,10 @@ io.on("connection", (socket) => {
         // This sends the URL to all OTHER connected browsers (like Edge)
         socket.broadcast.emit('play-remote-audio', { url: data.url });
     });
+    socket.on('new-audio', (data) => {
+    // This sends the message to EVERYONE ELSE connected
+    socket.broadcast.emit('play-audio', data);
+});
 });
 
 server.listen(5000, () => console.log("🚀 Backend running on port 5000"));
