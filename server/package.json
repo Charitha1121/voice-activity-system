@@ -1,11 +1,11 @@
 {
   "name": "voice-system-server",
   "version": "1.0.0",
-  "type": "module",
+  "type": "module", 
   "main": "index.js",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.2",
-    "socket.io": "^4.7.2",
-    "cors": "^2.8.5"
+    "socket.io": "^4.7.2"
   }
 }

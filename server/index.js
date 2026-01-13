@@ -10,14 +10,13 @@ const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: "*" } });
 
 io.on("connection", (socket) => {
-    console.log("Connect:", socket.id);
+    console.log("User Connected:", socket.id);
 
-    socket.on("audio-chunk", (data) => {
-        // Simulates routing audio metadata to other users
-        socket.broadcast.emit("remote-audio", { from: socket.id, meta: data });
+    socket.on('audio-uploaded', (data) => {
+        console.log("📢 New audio ready at:", data.url);
+        // This sends the URL to all OTHER connected browsers (like Edge)
+        socket.broadcast.emit('play-remote-audio', { url: data.url });
     });
-
-    socket.on("disconnect", () => console.log("Disconnect:", socket.id));
 });
 
-server.listen(5000, () => console.log("🚀 Backend on port 5000"));
+server.listen(5000, () => console.log("🚀 Backend running on port 5000"));

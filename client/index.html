@@ -3,20 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Production Voice System</title>
+    <title>Production Voice System | 2-Way AI</title>
     <style>
-        body { font-family: sans-serif; background: #121212; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
+        body { font-family: sans-serif; background: #121212; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
         canvas { border: 1px solid #333; border-radius: 8px; background: #000; width: 600px; height: 200px; }
-        button { padding: 12px 24px; font-size: 16px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 5px; margin-bottom: 20px; }
-        .status { margin-top: 10px; color: #888; }
+        button { padding: 12px 24px; font-size: 16px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 5px; margin-bottom: 20px; transition: 0.3s; }
+        button:hover { background: #0056b3; }
+        .status { margin-top: 10px; color: #888; font-family: monospace; }
+        .live-indicator { color: #ff4d4d; font-weight: bold; margin-bottom: 10px; display: none; }
     </style>
 </head>
 <body>
     <h2>AI Voice Activity System</h2>
-    <button id="startBtn">Enable Microphone</button>
+    <div id="liveIndicator" class="live-indicator">● LIVE 2-WAY ENABLED</div>
+    
+    <button id="startBtn">Enable Microphone & Start System</button>
+    
     <canvas id="waveform"></canvas>
-    <div id="status" class="status">System Idle</div>
-<script src="https://cdn.jsdelivr.net/npm/audio-recorder-polyfill"></script>
+    <div id="status" class="status">System Idle - Waiting for interaction</div>
+
+    <script src="https://unpkg.com/audio-recorder-polyfill/index.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="http://localhost:5000/socket.io/socket.io.js"></script>
     
